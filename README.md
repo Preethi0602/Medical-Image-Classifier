@@ -135,31 +135,6 @@ train('data/pneumonia_labels.csv', 'data/chest_xray')
 
 Training logs metrics to MLflow and blocks deployment if AUC < 0.60.
 
-## Project structure
-medical-image-classifier/
-├── backend/
-│   ├── app/
-│   │   ├── api/routes.py          # FastAPI endpoints
-│   │   ├── core/config.py         # Settings and config
-│   │   ├── models/classifier.py   # ResNet-50 architecture
-│   │   └── services/
-│   │       ├── dataset.py         # PyTorch Dataset class
-│   │       ├── trainer.py         # Training loop + MLflow
-│   │       ├── inference.py       # Inference service
-│   │       └── gradcam.py         # Grad-CAM explainability
-│   ├── tests/                     # pytest test suite
-│   ├── Dockerfile
-│   └── requirements.txt
-├── frontend/
-│   └── src/
-│       ├── components/
-│       │   ├── Upload/            # X-ray drag and drop
-│       │   ├── Results/           # Prediction bars
-│       │   ├── Dashboard/         # Experiments chart
-│       │   └── Registry/          # Model versions
-│       ├── hooks/                 # useInference, useExperiments
-│       └── utils/api.ts           # Axios API client
-└── .github/workflows/ci-cd.yml   # GitHub Actions pipeline
 
 ## API endpoints
 

@@ -38,30 +38,30 @@ The Experiments tab shows all training runs tracked in MLflow, loss curves, AUC 
 ## Tech stack
 
 **Model training**
-- PyTorch 2.2 — training loop, mixed precision (AMP)
-- timm — ResNet-50 pretrained backbone
-- albumentations — image augmentation pipeline
-- FocalLoss — handles class imbalance in medical data
-- scikit-learn — AUC metric
+- PyTorch 2.2: training loop, mixed precision (AMP)
+- timm: ResNet-50 pretrained backbone
+- albumentations: image augmentation pipeline
+- FocalLoss: handles class imbalance in medical data
+- scikit-learn: AUC metric
 
 **MLOps**
-- MLflow — experiment tracking, hyperparameter logging, model registry
-- Eval gate — blocks deployment if AUC drops below threshold
+- MLflow: experiment tracking, hyperparameter logging, model registry
+- Eval gate: blocks deployment if AUC drops below threshold
 
 
 **Backend**
-- FastAPI — REST API with auto-generated docs
-- Pydantic — request/response validation
-- Uvicorn — ASGI server
+- FastAPI: REST API with auto-generated docs
+- Pydantic: request/response validation
+- Uvicorn: ASGI server
 - Python 3.11
 
 **Frontend**
 - React 18 + TypeScript
-- Vite — build tool
-- TailwindCSS — styling
-- Recharts — metrics charts
-- React Query — data fetching with polling
-- React Dropzone — file upload
+- Vite: build tool
+- TailwindCSS: styling
+- Recharts: metrics charts
+- React Query: data fetching with polling
+- React Dropzone: file upload
 
 ## Run locally
 
@@ -84,19 +84,19 @@ cp .env.example .env
 
 **Start all three services — each in a separate terminal tab**
 
-Terminal 1 — MLflow tracking server:
+Terminal 1: MLflow tracking server:
 ```bash
 cd backend && source venv/bin/activate
 mlflow server --host 127.0.0.1 --port 5003
 ```
 
-Terminal 2 — FastAPI backend:
+Terminal 2: FastAPI backend:
 ```bash
 cd backend && source venv/bin/activate
 uvicorn app.main:app --reload
 ```
 
-Terminal 3 — React frontend:
+Terminal 3: React frontend:
 ```bash
 cd frontend
 npm install
@@ -136,3 +136,40 @@ train('data/pneumonia_labels.csv', 'data/chest_xray')
 Training logs metrics to MLflow and blocks deployment if AUC < 0.60.
 
 ## Project structure
+medical-image-classifier/
+├── backend/
+│   ├── app/
+│   │   ├── api/routes.py          # FastAPI endpoints
+│   │   ├── core/config.py         # Settings and config
+│   │   ├── models/classifier.py   # ResNet-50 architecture
+│   │   └── services/
+│   │       ├── dataset.py         # PyTorch Dataset class
+│   │       ├── trainer.py         # Training loop + MLflow
+│   │       ├── inference.py       # Inference service
+│   │       └── gradcam.py         # Grad-CAM explainability
+│   ├── tests/                     # pytest test suite
+│   ├── Dockerfile
+│   └── requirements.txt
+├── frontend/
+│   └── src/
+│       ├── components/
+│       │   ├── Upload/            # X-ray drag and drop
+│       │   ├── Results/           # Prediction bars
+│       │   ├── Dashboard/         # Experiments chart
+│       │   └── Registry/          # Model versions
+│       ├── hooks/                 # useInference, useExperiments
+│       └── utils/api.ts           # Axios API client
+└── .github/workflows/ci-cd.yml   # GitHub Actions pipeline
+
+## API endpoints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | /api/v1/health | Health check |
+| POST | /api/v1/predict | Upload X-ray, get predictions |
+| GET | /api/v1/experiments | MLflow experiment runs |
+| GET | /api/v1/model-registry | Registered model versions |
+| GET | /api/v1/labels | 14 disease class labels |
+
+Full docs at /docs when running locally.
+

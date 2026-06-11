@@ -22,7 +22,7 @@ Upload a chest X-ray image and the system:
 - Color-codes the risk level (red = high, blue = low)
 - Logs the prediction through a FastAPI endpoint
 
-The Experiments tab shows all training runs tracked in MLflow — loss curves, AUC metrics, and model versions. The Registry tab shows which model version is currently deployed.
+The Experiments tab shows all training runs tracked in MLflow, loss curves, AUC metrics, and model versions. The Registry tab shows which model version is currently deployed.
 
 ## Results
 
@@ -47,7 +47,7 @@ The Experiments tab shows all training runs tracked in MLflow — loss curves, A
 **MLOps**
 - MLflow — experiment tracking, hyperparameter logging, model registry
 - Eval gate — blocks deployment if AUC drops below threshold
-- GitHub Actions — CI/CD pipeline (test → train → eval gate → Docker → deploy)
+
 
 **Backend**
 - FastAPI — REST API with auto-generated docs
@@ -62,12 +62,6 @@ The Experiments tab shows all training runs tracked in MLflow — loss curves, A
 - Recharts — metrics charts
 - React Query — data fetching with polling
 - React Dropzone — file upload
-
-**Infrastructure**
-- Docker — containerized backend
-- Vercel — frontend hosting
-- Render — backend hosting
-- pytest — 9 unit and integration tests
 
 ## Run locally
 

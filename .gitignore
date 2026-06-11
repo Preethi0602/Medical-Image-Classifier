@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+.env
+*.pth
+checkpoints/
+mlruns/
+data/
+
+# Node
+node_modules/
+dist/
+.env.local
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store# Data and models (too large for GitHub)
+backend/data/
+backend/checkpoints/
+backend/mlruns/
+backend/venv/
+backend/*.zip
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# Python
+__pycache__/
+*.pyc
+.env
+backend/data/
+backend/checkpoints/
+backend/mlruns/
+backend/venv/
+backend/*.zip
+frontend/node_modules/
+frontend/dist/
+__pycache__/
+*.pyc
+.env
+backend/mlartifacts/

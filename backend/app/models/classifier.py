@@ -51,7 +51,7 @@ class ChestXRayClassifier(nn.Module):
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         features = self.backbone(x)
         logits = self.classifier(features)
-        return logits  # sigmoid applied at loss/inference time
+        return logits  
 
     def get_features(self, x: torch.Tensor) -> torch.Tensor:
         """Return feature embeddings before classifier (used by Grad-CAM)."""

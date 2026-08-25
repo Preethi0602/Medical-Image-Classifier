@@ -14,8 +14,6 @@ from app.core.config import settings
 client = TestClient(app)
 
 
-# ── Model tests ───────────────────────────────────────────────────
-
 def test_model_output_shape():
     """Model should output [batch, 14] logits."""
     model = ChestXRayClassifier()
@@ -45,7 +43,6 @@ def test_sigmoid_probabilities():
     assert probs.max() <= 1.0
 
 
-# ── Transform tests ───────────────────────────────────────────────
 
 def test_train_transforms():
     """Train transforms should output correct tensor shape."""
@@ -73,7 +70,6 @@ def test_val_transforms():
     )
 
 
-# ── API tests ─────────────────────────────────────────────────────
 
 def test_health_endpoint():
     with patch("app.api.routes.get_inference_service") as mock:

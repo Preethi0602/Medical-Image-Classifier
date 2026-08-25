@@ -10,7 +10,6 @@ router = APIRouter(
 )
 
 
-# ── Response schemas ──────────────────────────────────────────────
 
 class PredictionResult(BaseModel):
     label: str
@@ -36,7 +35,7 @@ class HealthResponse(BaseModel):
     device: str
 
 
-# ── Endpoints ─────────────────────────────────────────────────────
+
 
 @router.get("/health", response_model=HealthResponse)
 def health_check(
